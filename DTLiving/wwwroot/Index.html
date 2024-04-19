@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTLiving</title>
+    <!-- Fontawesome 套用連結 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap CSS  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/HFdesign.css">
+    <link rel="stylesheet" href="css/Index.css">
+
+</head>
+
+<body>
+
+    <!-- Header's Design -->
+    <header class="container-fluid">
+        <div class="row">
+
+            <!-- Logo's Design -->
+            <div class="col-3 d-flex justify-content-center align-items-center" id="BOX1">
+                <a href="Index.html" class="logotext">DTLIVING</a>
+            </div>
+
+            <!-- Function's Design -->
+            <nav class="col-6 navbar navbar-expand-lg navbar-light" id="BOX2">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link ms-2" href="About.html">
+                                    <span class="data-text">關於我們</span>
+                                    <span class="original-text ms-2">ABOUT</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-2" data-text="品牌專區" href="Brand.html">
+                                    <span class="data-text">品牌專區</span>
+                                    <span class="original-text ms-2">BRAND</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-2" data-text="產品專區" href="Products.html">
+                                    <span class="data-text">產品專區</span>
+                                    <span class="original-text ms-2">PRODUCT</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-2" data-text="購物車" href="Store.html">
+                                    <span class="data-text">購物車</span>
+                                    <span class="original-text ms-2">STORE</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Client's Design -->
+            <div class="col-3 d-flex justify-content-center align-items-center" id="BOX3">
+                <ul class="list-unstyled mb-0">
+                    <li class="d-inline-block mr-3">
+                        <a id="Userlink">
+                            <div class="container dropdown">
+                                <a id="JwtCatchName" class="dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false"></a>
+                                <ul class="dropdown-menu text-left" aria-labelledby="JwtCatchName">
+                                    <li><a class="dropdown-item" href="Order.html">訂單管理</a></li>
+                                    <li><a class="dropdown-item" id="logout" onclick="MemberLogout()">登出</a></li>
+                                </ul>
+                            </div>
+                        </a>
+
+                        <i class="fa-solid fa-user" id="membericon" data-bs-toggle="modal"
+                            data-bs-target="#loginModal"></i>
+                    </li>
+
+                    <!-- 會員登入/登出彈跳窗格 -->
+                    <div class="modal fade" id="loginModal">
+                        <div class="modal-dialog " id="showmodal">
+                            <div class="modal-content container">
+
+                                <!-- Header -->
+                                <div class="modal-header">
+                                    <div class="dropdown col-4">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            請選擇
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" href="#" onclick="ShowLoginForm()">會員登入</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="#" onclick="ShowRegisterForm()">會員註冊</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="#" onclick="ShowAdminForm()">員工登入</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4 d-flex justify-content-center align-items-center text-center">
+                                        <span class="col-10" style="font-size: 18px;">會員登入/註冊</span>
+                                    </div>
+                                    <div class="col-4 d-flex text-right">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                </div>
+
+                                <!-- Body -->
+                                <div class="modal-body">
+
+                                    <!-- 會員登入表單 -->
+                                    <form action id="loginform" aria-describedby="username-description">
+                                        <div class="form-group">
+                                            <span><i class="fa-solid fa-user"></i>
+                                                會員帳號</span>
+                                            <input type="email" class="account form-control" id="loginaccount"
+                                                placeholder="請輸入帳號">
+                                        </div><br>
+                                        <div class="form-group">
+                                            <span><i class="fa-solid fa-user"></i>
+                                                會員密碼</span>
+                                            <input type="password" class="password form-control" id="loginpassword"
+                                                placeholder="請輸入密碼">
+                                        </div><br>
+                                        <div class="form-group">
+                                            <input type="checkbox" class="remember"> 記住密碼
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-Secondary" onclick="LoginFormVerify()"
+                                                style="color: white;background-color: black;width: 100%;">登入</button>
+                                        </div><br>
+                                        <div id="username-description" class="container">
+                                            <h6>
+                                                登入說明 <br>
+                                                帳號 : <br>
+                                                1. 開頭必須是大寫英文。<br>
+                                                2. 至少包含一個數字。<br>
+                                                3. 帳號長度介於8~10。<br>
+                                                <br>
+                                                密碼 : <br>
+                                                1. 開頭必須是大寫英文。<br>
+                                                2. 至少包含一個數字。<br>
+                                                3. 帳號長度介於8~13。<br>
+                                            </h6>
+                                        </div>
+                                    </form>
+
+                                    <!-- 會員註冊表單 -->
+                                    <form action id="registerform" style="display: none;"
+                                        aria-describedby="Register-description">
+                                        <h6><i class="fa-regular fa-file"></i>
+                                            帳號設定</h6>
+                                        <hr style="width: 100%; border: 1px solid rgb(230, 228, 228);">
+                                        <div class="form-group row"
+                                            style="display: flex;justify-content: space-between;">
+                                            <div class="form-gruop col-6">
+                                                <label for="usereid">*
+                                                    會員帳號</label>
+                                                <input type="text" id="usereid" name="Userid"
+                                                    class="account form-control" placeholder="請輸入登入帳號">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label for="userpassword">*
+                                                    會員密碼</label>
+                                                <input type="password" id="userpassword" name="Userpassword"
+                                                    class="password form-control" placeholder="請輸入登入密碼">
+                                            </div>
+                                        </div><br>
+                                        <h6><i class="fa-regular fa-file"></i>
+                                            會員基本資料</h6>
+                                        <hr style="width: 100%; border: 1px solid rgb(230, 228, 228);">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="username">*
+                                                        會員姓名</label>
+                                                    <input type="text" id="username" name="UserName"
+                                                        class="account form-control" placeholder="請輸入註冊姓名">
+                                                </div><br>
+                                                <div class="form-group">
+                                                    <label for="userphone">*
+                                                        會員電話</label>
+                                                    <input type="tel" id="userphone" name="UserPhone"
+                                                        class="account form-control" placeholder="請輸入註冊電話">
+                                                </div><br>
+                                                <div class="form-group">
+                                                    <label for="useremail">*
+                                                        會員信箱</label>
+                                                    <input type="email" id="usermail" name="usermail"
+                                                        class="account form-control" placeholder="請輸入註冊信箱">
+                                                </div><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="useraddress">*
+                                                    會員地址</label>
+                                                <input type="text" id="useraddress" name="useraddress"
+                                                    class="account form-control" placeholder="請輸入會員地址">
+                                            </div>
+                                        </div><br>
+                                        <div class="row">
+                                            <div class="col-12 d-flex justify-content-end">
+                                                <button type="button"
+                                                    class="btn btn-outline-secondary mr-3 custom-width-btn"
+                                                    onclick="ClearFormData()" style="width: 180px;">清除重填</button>
+                                                <button type="button" class="btn btn-dark mr-5 custom-width-btn"
+                                                    onclick="RegisterFormVerify()" style="width: 180px;">確認送出</button>
+                                            </div>
+                                        </div><br>
+                                        <div id="Register-description">
+                                            <div class="container">
+                                                <h6>
+                                                    註冊說明 <br>
+                                                    帳號 : <br>
+                                                    1. 開頭必須是大寫英文。<br>
+                                                    2. 至少包含一個數字。<br>
+                                                    3. 帳號長度介於8~10。<br>
+                                                    <br>
+                                                    密碼 : <br>
+                                                    1. 開頭必須是大寫英文。<br>
+                                                    2. 至少包含一個數字。<br>
+                                                    3. 帳號長度介於8~13。<br>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <!-- 員工登入表單 -->
+                                    <form action id="adminform" style="display: none;">
+                                        <div class="form-group">
+                                            <span><i class="fa-solid fa-user"></i>
+                                                員工編號</span>
+                                            <input type="text" class="account form-control" id="EmployId"
+                                                placeholder="請輸入您的員工編號">
+                                        </div><br>
+
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-Secondary"
+                                                style="color: white;background-color: black;width: 100%;"
+                                                onclick="EmployerLogin()">登入</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main's Design -->
+    <main class="contaier-fluid" id="MainDesign">
+
+        <br>
+        <div class="container" id="ImageDesign">
+            <div class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="IImage/BrandImage_2.jpg" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="IImage/BrandImage_4.jpg" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="IImage/BrandImage_6.jpg" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="IImage/BrandImage_8.jpg" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="IImage/BrandImage_10.jpg" class="d-block w-100">
+                    </div>
+                </div>
+                </button>
+            </div>
+        </div>
+
+        <br>
+        <div class="container-fluid text-center">
+            <span style="font-size: 40px;">BRAND</span><br>
+            <span style="font-size: 40px;">|</span><br>
+            <span>
+                <input id="radioButtons1" type="radio" checked onclick="ChangeImage()">
+                <input id="radioButtons2" type="radio" onclick="ChangeImage()">
+            </span>
+        </div>
+
+        <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 20vh;">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-xxl-2 showimage-item">
+                    <img id="showimage1" src="SImage/Arketipo.jpg" class="img-fluid">
+                </div>
+                <div class="col-xxl-2 showimage-item">
+                    <img id="showimage2" src="SImage/Artisan.jpg" class="img-fluid">
+                </div>
+                <div class="col-xxl-2 showimage-item">
+                    <img id="showimage3" src="SImage/FRAG.jpg" class="img-fluid">
+                </div>
+                <div class="col-xxl-2 showimage-item">
+                    <img id="showimage4" src="SImage/La Chance.jpg" class="img-fluid">
+                </div>
+                <div class="col-xxl-2 showimage-item">
+                    <img id="showimage5" src="SImage/Oluce.jpg" class="img-fluid">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer's Design -->
+    <footer class="container-fluid">
+        <div class="row d-flex justify-content-center" id="Footeroutsoide">
+            <div class="col-3 d-flex justify-content-center align-items-center" id="HBox1"
+                style="border-right: 1px solid rgb(150, 148, 148);">
+                <input type="email" placeholder="Email Address" style="height: 25px;">
+                <button type="button" style="width: 60px;height: 25px;" id="EmailButton">Submit</button>
+            </div>
+            <div class="col-3" id="HBox2" style="border-right: 1px solid rgb(150, 148, 148);">
+                <h4 style="font-size: 18px;text-align: center;color: white;">CONTACT
+                    US</h4>
+                <p style="font-size: 11px;color: rgb(150, 148, 148);text-align: center;">
+                    台北總店<br>
+                    105 台北市松山區富錦街457號<br>
+                    TEL 02-2745-7111 FAX 02-2745-7222<br>
+                    台中分店<br>
+                    407 台中市西屯區黎明路3段171號<br>
+                    TEL 04-2451-6171 FAX 04-2451-6178
+                </p>
+            </div>
+            <div class="col-3" id="HBox3" style="border-right: 1px solid rgb(150, 148, 148);">
+                <h4 style="font-size: 18px;text-align: center;color: white;">FOLLOW
+                    US</h4>
+                <div class="d-flex justify-content-center ">
+                    <i class="fa-brands fa-facebook d-flex" id="Market1" onclick="facebooklink()"></i>
+                    <i class="fa-brands fa-twitter d-flex" style="margin-left: 10px;" id="Market2"
+                        onclick="twitterlink()"></i>
+                    <i class="fa-brands fa-youtube d-flex" style="margin-left: 10px;" id="Market3"
+                        onclick="youtubelink()"></i>
+                    <i class="fa-solid fa-d d-flex" style="margin-left: 10px;" id="Market4" onclick="indexlink()"></i>
+                </div>
+            </div>
+            <div class="col-3" id="HBox4">
+                <ul class="d-flex justify-content-center align-items-center ">
+                    <li class="d-inline-block"><a href id="connecting1">聯絡我們</a></li>
+                    <hr style="width: 1px; height: 12px;background-color: rgb(175, 175, 169);">
+                    <li class="d-inline-block"><a href id="connecting2">購物說明</a></li>
+                    <hr style="width: 1px; height: 12px;background-color: rgb(175, 175, 169);">
+                    <li class="d-inline-block"><a href id="connecting3">網站聲明</a></li>
+                    <hr style="width: 1px; height: 12px;background-color: rgb(175, 175, 169);">
+                    <li class="d-inline-block"><a href id="connecting4">網站地圖</a></li>
+                </ul>
+                <p style="font-size: 12px;color: rgb(150, 148, 148);" class="text-center">
+                    抬頭 : 朕璽國際有限公司 <br>
+                    統編 : 42869354 <br>
+                    Copyright © ZX LIVING All rights reserved. <br>
+                    E-mail : info@zx-living.com <br>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="js/HFdesign.js"></script>
+    <script src="js/Member.js"></script>
+    <script src="js/Index.js"></script>
+    <!-- Bootstrap JS 和 Popper.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+.brandimage {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.brandcontext {
+    height: 45vh;
+}
+
+.Content1 {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.Content1 span{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.Content2 {
+    padding-left: 50px;
+    padding-right: 50px;
+}

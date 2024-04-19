@@ -1,0 +1,50 @@
+[id^=creatorsImage] {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transform: scale(1, 1);
+    transition: all 0.5s ease-out;
+    position: relative;
+}
+
+[id^=creatorsImage]:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.image-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.image-container::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 0.3s ease-in-out;
+    background-color: rgba(193, 182, 182, 0.85);
+}
+
+.image-container:hover::before {
+    opacity: 1;
+}
+
+.image-container span {
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.image-container:hover span {
+    opacity: 1;
+}

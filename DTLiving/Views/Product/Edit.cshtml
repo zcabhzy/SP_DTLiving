@@ -1,0 +1,92 @@
+﻿@model DTLiving.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <h2> 商品管理系統 </h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-xxl">
+            @* 商品名稱 *@
+            <div class="form-group">
+                <label asp-for="NAME">商品名稱</label>
+                <input asp-for="NAME" class="form-control" />
+            </div>
+        </div>
+        <div class="col-xxl">
+            @* 商品品牌 *@
+            <div class="form-group">
+                <label asp-for="CategoryId">商品品牌</label>
+                <select class="form-control" asp-for="CategoryId" asp-items="ViewBag.Categories"></select>
+            </div>
+        </div>
+        <div class="col-xxl">
+            @* 商品圖片 *@
+            <div class="form-group">
+                <label asp-for="IMAGE" class="control-label"></label>
+                <input type="file" name="myimg" id="myimg" class="form-control-file" />
+                <span asp-validation-for="IMAGE" class="text-danger"></span>
+            </div>
+        </div>
+    </div><br />
+
+    <div class="row">
+        <div class="col-xxl-8">
+            @* 商品介紹 *@
+            <div class="form-group">
+                <label asp-for="CONTEXT">商品介紹</label>
+                <textarea asp-for="CONTEXT" class="form-control" style="height:400px;"></textarea>
+            </div>
+        </div>
+        @if (ViewBag.Base64Image != null)
+        {
+            <img class="col-xxl-4" src="data:image/png;base64,@ViewBag.Base64Image" id="preview" />
+        }
+    </div><br />
+
+    <div class="row">
+        <div class="col-xxl">
+            @* 商品單價 *@
+            <div class="form-group">
+                <label asp-for="PRICE">商品單價</label>
+                <input asp-for="PRICE" class="form-control" />
+            </div>
+        </div>
+        <div class="col">
+            @* 商品庫存 *@
+            <div class="form-group">
+                <label asp-for="STOCK">商品庫存</label>
+                <input asp-for="STOCK" class="form-control" />
+            </div>
+        </div>
+    </div><br />
+
+    <div class="row">
+        <div class="form-group col-xxl-6">
+            <input type="submit" value="Save" class="btn btn-secondary" />
+            <button class="btn btn-secondary" asp-controller="Product" asp-action="Index">返回首頁</button>
+        </div>
+    </div>
+
+
+</form>
+
+@section Scripts {
+
+    <script>
+
+        $('#myimg').on('change', function (e) {
+            const file = this.files[0];
+            // 使用 createObjectURL 產生圖片url
+            const objectURL = URL.createObjectURL(file);
+            $('#preview').attr('src', objectURL);
+        });
+
+    </script>
+
+}

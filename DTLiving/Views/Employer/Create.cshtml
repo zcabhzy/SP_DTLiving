@@ -1,0 +1,157 @@
+﻿@model DTLiving.Models.Employer;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h2>員工管理系統</h2>
+
+<hr />
+
+<form asp-action="Create" method="post" enctype="multipart/form-data" class="container">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row">
+
+        <img class="col-xxl-2" id="preview" style="height:200px" />
+
+        <div class="col-xxl">
+            <div class="form-group">
+                <label asp-for="ClerkImage">相片</label>
+                <input type="file" name="employerimage" id="employerimage" class="form-control-file" />
+                <span asp-validation-for="ClerkImage" class="text-danger"></span>
+            </div>
+        </div>
+    </div><br />
+
+    <div class="row">
+        <div class="col-xxl">
+            <div class="form-group">
+                <label asp-for="StaffId">員工編號</label>
+                <input asp-for="StaffId" class="form-control" id="staffid" onclick="UpdateStaffId()" readonly />
+            </div>
+        </div>
+        <div class="col-xxl">
+            <div class="form-group">
+                <label asp-for="ClerkName">姓名</label>
+                <input asp-for="ClerkName" class="form-control" />
+            </div>
+        </div>
+        <div class="col-xxl">
+            <div class="form-group">
+                <label asp-for="Gender">性別</label>
+                <input type="checkbox" id="Male" onclick="UpdateGender('Male')" />Male
+                <input type="checkbox" id="Female" onclick="UpdateGender('Female')" />Female
+                <input asp-for="Gender" id="gender" class="form-control" readonly />
+            </div>
+        </div>
+    </div><br />
+
+    <div class="row">
+        <div class="col-xxl">
+            <div class="form-group">
+                <label asp-for="born">生日</label>
+                <input asp-for="born" id="born" class="form-control" placeholder="ex. 1994/06/11" />
+            </div>
+        </div>
+        <div class="col-xxl">
+            <div class="form-group">
+                <label asp-for="ClerkPhone">電話</label>
+                <input asp-for="ClerkPhone" class="form-control" />
+            </div>
+        </div>
+    </div><br />
+
+    <div class="row">
+        <div class="col-xxl">
+            <div class="form-group">
+                <label asp-for="ClerkAddress">地址</label>
+                <input asp-for="ClerkAddress" class="form-control" />
+            </div>
+        </div>
+    </div><br />
+
+    <div class="row-cols-xxl-auto">
+        <div class="form-group col-xxl-4">
+            <input type="submit" value="Create" class="btn btn-dark" />
+        </div>
+    </div>
+
+
+
+</form>
+
+@section Scripts {
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+
+
+        $('#employerimage').on('change', function (e) {
+            const Employerfile = this.files[0];
+            const EmployerURL = URL.createObjectURL(Employerfile);
+            $('#preview').attr('src', EmployerURL);
+        });
+
+        function UpdateStaffId() {
+
+            let staffidcheck = document.getElementById('staffid');
+            let borncheck = document.getElementById('born');
+
+            if (borncheck.value === null || borncheck.value === undefined || borncheck.value === '') {
+
+                staffidcheck.value = ' ';
+
+            } else {
+
+                let mouth = borncheck.value
+                let mouthformat = mouth.substring(5);
+                let id = mouthformat.replace('/', '')
+
+                staffid = `8110${id}`;
+                staffidcheck.value = staffid;
+            }
+
+        }
+
+        function UpdateGender(selectedGender) {
+
+            let MaleCheck = document.getElementById('Male');
+            let FemaleCheck = document.getElementById('Female');
+            const GenderCheck = document.getElementById('gender');
+
+            if (selectedGender === 'Male') {
+                FemaleCheck.checked = false;
+                GenderCheck.value = 'Male';
+            } else if (selectedGender === 'Female') {
+                MaleCheck.checked = false;
+                GenderCheck.value = 'Female';
+            }
+            return;
+        }
+
+        document.getElementById('born').addEventListener('blur', function () {
+
+            validateDateInput();
+            UpdateStaffId()
+
+        });
+
+        function validateDateInput() {
+
+            var input = document.getElementById('born');
+            var dateRegex = /^\d{4}\/\d{2}\/\d{2}$/;
+
+            if (!dateRegex.test(input.value)) {
+                alert('生日格式必须为yyyy/MM/dd');
+                input.value = '';
+            }
+
+        }
+
+    </script>
+
+}

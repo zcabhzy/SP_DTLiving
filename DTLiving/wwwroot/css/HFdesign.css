@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+/* #region Function => All's Design */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-style: normal;
+    font-family: "Palanquin", sans-serif;
+}
+
+/* 保留滑鼠滾輪功能，但取消垂直滾輪條 */
+body {
+    overflow-y: scroll;
+}
+
+/* Webkit/Blink browsers 隱藏 Webkit/Blink 滾輪條的寬度 */
+body::-webkit-scrollbar {
+    width: 0;
+}
+
+/* #endregion */
+
+/* #region Function => Header's Design */
+header {
+    height: 90px;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+    font-family: "Lato", sans-serif;
+    background-color: rgb(233, 230, 226);
+}
+
+.logotext {
+    font-size: 40px;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+header a,
+header a:hover,
+header a:visited,
+header a:active {
+    color: black;
+    text-decoration: none;
+}
+
+[id^=BOX] {
+    height: 90px;
+}
+
+.dropdown-item:hover{
+    font-weight: 700;
+    font-style: normal;
+    font-family: "Palanquin", sans-serif;
+    background-color: rgba(190, 190, 197, 0.811);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* #endregion */
+
+/* #region Function => Header's navlink Design */
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before,
+.nav-link .data-text {
+    font-size: 18px;
+    text-align: center;
+    position: absolute;
+    color: black;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-link:hover .data-text {
+    transform: translateX(-50%) translateY(-125%);
+    opacity: 1;
+}
+
+.nav-link:hover {
+    color: transparent;
+}
+
+.nav-link .original-text {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover .original-text {
+    opacity: 0;
+}
+
+.nav-link {
+    white-space: nowrap;
+}
+
+/* #endregion */
+
+/* #region Function => Footer's Design */
+footer {
+    height: 140px;
+    background-color: rgb(88, 87, 84);
+}
+
+#EmailButton {
+    color: white;
+    background-color: black;
+}
+
+[id^=HBox] {
+    height: 140px;
+}
+
+#Footeroutsoide {
+    padding-left: 20pc;
+    padding-right: 20pc;
+}
+
+[id^=Market] {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 50%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 1px solid white;
+    background-color: rgb(88, 87, 84);
+}
+
+[id^=Market]:hover {
+    color: black;
+    background-color: white;
+}
+
+[id^=connecting] {
+    font-size: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: white;
+    text-decoration: none;
+}
+
+[id^=connecting]:hover {
+    color: white;
+}
+
+/* #endregion */

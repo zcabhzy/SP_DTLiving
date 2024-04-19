@@ -1,0 +1,89 @@
+﻿@model DTLiving.Models.Product;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+@*
+    圖片上傳/圖片預覽功能 :
+    使用 Form表單時，需加上 <enctype="multipart/form-data">
+
+    圖片上傳資料庫的方法 :
+    1. 如果圖片儲存在磁碟上，若存在網路空間，可以在資料庫欄位中以字串保存圖片路徑。
+    2. 直接將圖片以二進位型態儲存在資料庫。
+*@
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <h2> 商品管理系統 </h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-xxl">
+            <div class="form-group">
+                <label asp-for="NAME">商品名稱</label>
+                <input asp-for="NAME" class="form-control" />
+            </div>
+        </div>
+        <div class="col-xxl">
+            <div class="form-group">
+                <label asp-for="CategoryId">商品品牌</label>
+                <select class="form-control" asp-for="CategoryId" asp-items="ViewBag.Categories"></select>
+            </div>
+        </div>
+        <div class="col-xxl">
+            <div class="form-group">
+                <label asp-for="IMAGE" class="control-label"></label>
+                <input type="file" name="myimg" id="myimg" class="form-control-file" />
+                <span asp-validation-for="IMAGE" class="text-danger"></span>
+            </div>
+        </div>
+    </div><br />
+
+    <div class="row">
+        <div class="col-xxl-8">
+            <div class="form-group">
+                <label asp-for="CONTEXT">商品介紹</label>
+                <textarea asp-for="CONTEXT" class="form-control" style="height:400px;"></textarea>
+            </div>
+        </div>
+        <img class="col-xxl-4" id="preview" style="" />
+    </div><br />
+
+    <div class="row">
+        <div class="col-xxl">
+            <div class="form-group">
+                <label asp-for="PRICE">商品單價</label>
+                <input asp-for="PRICE" class="form-control" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label asp-for="STOCK">商品庫存</label>
+                <input asp-for="STOCK" class="form-control" />
+            </div>
+        </div>
+    </div><br />
+
+    <div class="row-cols-xxl-auto">
+        <div class="form-group col-xxl-4">
+            <input type="submit" value="Create" class="btn btn-dark" />
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+
+    <script>
+        $('#myimg').on('change', function (e) {
+            const file = this.files[0];
+            const objectURL = URL.createObjectURL(file);
+            $('#preview').attr('src', objectURL);
+        });
+    </script>
+
+}
+
+

@@ -1,0 +1,103 @@
+﻿@model List<DTLiving.Models.Client>;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section styles {
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" />
+}
+
+<div class="row">
+    <div class="col-xxl-4">
+        <h3>Client List</h3>
+    </div>
+</div>
+
+
+<div class="" style="min-height:50vh;">
+    <table class="table table-index" id="clientTable">
+        <thead>
+            <tr>
+                <th class="Id">編號</th>
+                <th class="UserID">帳號</th>
+                <th class="UserName">姓名</th>
+                <th class="UserPhone">電話</th>
+                <th class="UserMail">信箱</th>
+                <th class="Control"></th>
+                <th class="Control"></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section scripts {
+
+    <!-- 引用 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#clientTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/Client/LoadData',
+                    type: 'POST',
+                    datatype: 'json'
+                },
+                columns: [
+                    { data: 'id', name: 'Id' },
+                    { data: 'userID', name: 'UserID' },
+                    { data: 'userName', name: 'UserName' },
+                    { data: 'userPhone', name: 'UserPhone' },
+                    { data: 'userMail', name: 'UserMail' },
+                    {
+                        "render": function (data, type, full, meta) {
+                            return '<a class="btn btn-secondary" href="/Employer/Edit/' + full.id + '">Edit</a>';
+                        }
+                    },
+                    {
+                        "render": function (data, type, full, meta) {
+                            return "<button class='btn btn-secondary' onclick=DeleteData(" + full.id + "); >Delete</button>";
+                        }
+                    }
+                ],
+                paging: true,
+                pageLength: 10
+            });
+        });
+
+        function DeleteData(id) {
+            if (confirm(" Remove this Client ? ")) {
+                $.ajax({
+                    url: '/Client/Delete',
+                    type: 'POST',
+                    data: { id: id },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.success) {
+                            // 刪除成功後，重新載入DataTable的資料
+                            $('#clientTable').DataTable().ajax.reload();
+                        } else {
+                            alert('刪除失敗: ' + data.errorMessage);
+                        }
+                    },
+                    error: function () {
+                        alert('與伺服器通訊發生錯誤！');
+                    }
+                });
+            }
+        }
+
+    </script>
+
+}

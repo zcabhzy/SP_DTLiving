@@ -1,0 +1,18 @@
+﻿body {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    min-height: 100vh;
+    width: 250px;
+    position: fixed;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-right: 1px solid #dee2e6;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}

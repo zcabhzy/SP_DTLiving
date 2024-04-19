@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+#OrderColumn{
+    height: 78vh;
+    max-height: 78vh;
+}
+
+#OrderTable {
+    max-height: 65vh;
+    overflow-y: scroll; /* 始終顯示滾動條 */
+    -ms-overflow-style: none; /* 隱藏IE滾動條 */
+    scrollbar-width: none; /* 隱藏Firefox滾動條 */
+}
+
+#OrderTable::-webkit-scrollbar {
+    display: none; /* 隱藏Webkit滾動條 */
+}

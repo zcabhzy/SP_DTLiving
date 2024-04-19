@@ -1,0 +1,88 @@
+﻿@model List<DTLiving.Models.Employer>;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section styles {
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" />
+}
+
+<div class="row">
+    <div class="col-xxl-4">
+        <h3>Employer List</h3>
+    </div>
+</div>
+
+
+<div class="" style="min-height:50vh;">
+    <table class="table table-index" id="employerTable">
+        <thead>
+            <tr>
+                <th class="Id">Id</th>
+                <th class="StaffId">StaffId</th>
+                <th class="Gender">Gender</th>
+                <th class="ClerkName">Name</th>
+                <th class="ClerkPhone">Phone</th>
+                <th class="Control"></th>
+                <th class="Control"></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section scripts {
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#employerTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/Employer/LoadData',
+                    type: 'POST',
+                    datatype: 'json'
+                },
+                columns: [
+                    { data: 'id', name: 'Id' },
+                    { data: 'staffId', name: 'StaffId' },
+                    { data: 'gender', name: 'Gender' },
+                    { data: 'clerkName', name: 'ClerkName' },
+                    { data: 'clerkPhone', name: 'ClerkPhone' },
+                    {
+                        "render": function (data, type, full, meta) {
+                            return '<a class="btn btn-secondary" href="/Employer/Edit/' + full.id + '">Edit</a>';
+                        }
+                    },
+                    {
+                        "render": function (data, type, full, meta) {
+                            return "<button class='btn btn-secondary' onclick=DeleteData(" + full.id + "); >Delete</button>";
+                        }
+                    }
+                ],
+                paging: true,
+                pageLength: 10
+            });
+        });
+
+        function DeleteData(id) {
+            if (confirm("確定要刪除此項目嗎？")) {
+                // 執行刪除動作，例如，重定向到您控制器中的刪除操作
+                window.location.href = '/Product/DeleteInfo/' + id;
+            }
+        }
+
+    </script>
+
+}

@@ -1,0 +1,18 @@
+#DetailContainer {
+    display: none;
+    height: 72vh;
+    max-height: 72vh;
+}
+
+#BackBtn {
+    width: 200px;
+    background-color: black;
+    border: 0.5px solid white;
+}
+
+#BackBtn a {
+    color: white;
+    font-size: 25px;
+    font-weight: 100;
+    text-decoration: none;
+}

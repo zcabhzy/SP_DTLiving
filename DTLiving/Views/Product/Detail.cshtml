@@ -1,0 +1,52 @@
+﻿@model DTLiving.Models.DetailViewModel
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+@* HtmlHelper *@
+@*
+    @Html.DisplayFor =>
+    @Html.DisplayNameFor =>
+*@
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col" style="font-size:20px">
+            <span>Product Name : </span>
+            @Html.DisplayFor(Model => Model.Product.NAME)
+        </div>
+    </div><br />
+    <div class="row" style="display:flex">
+        <div class="col-sm-4">
+            <img src="@Html.DisplayFor(Model => Model.imgsrc)" style="width:100%;" />
+        </div>
+        <div class="col-sm-8">
+            <div class="row" style="font-size:20px">
+                @Html.DisplayNameFor(Name => Name.Product.Category) :
+            </div><br />
+            <div class="row" style="font-size:20px">
+                @Html.DisplayNameFor(Name => Name.Product.PRICE) :
+                @Html.DisplayFor(Model => Model.Product.PRICE)
+            </div><br />
+            <div class="row" style="font-size:20px">
+                @Html.DisplayNameFor(Name => Name.Product.STOCK) :
+                @Html.DisplayFor(Model => Model.Product.STOCK)
+            </div><br />
+            <div class="row" style="font-size:20px">
+                @Html.DisplayNameFor(Name => Name.Product.CONTEXT) :
+                <br />
+                <br />
+                @Html.Raw(Model.Product.CONTEXT)
+            </div>
+        </div>
+    </div><br />
+    <div class="row">
+        <div class="container">
+            <a class="btn btn-dark col-sm-2" asp-action="Edit" style="text-decoration:none">Edit</a>
+            <a class="btn btn-dark col-sm-2" asp-action="Index" style="text-decoration:none">Back To List</a>
+        </div>
+
+    </div>
+</div>

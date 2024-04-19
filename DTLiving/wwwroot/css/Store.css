@@ -1,0 +1,22 @@
+#cartList {
+    height: 40vh;
+    display: flex;
+    overflow-y: auto;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#RemoveCar {
+    width: 150px;
+    height: 30px;
+    color: white;
+    background-color: black;
+}
+
+#ConfirmOrder{
+    width: 150px;
+    height: 30px;
+    color: white;
+    background-color: black;
+}
